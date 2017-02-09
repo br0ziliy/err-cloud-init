@@ -1,4 +1,4 @@
-# err-webhook-send
+# err-cloud-init
 Err chatbot plugin to accept
 [cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/modules.html#phone-home) `phone_home` module requests.
 
