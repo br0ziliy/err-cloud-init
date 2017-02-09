@@ -30,6 +30,10 @@ class CloudInit(BotPlugin):
         """
         return CONFIG_TEMPLATE
 
+    def check_configuration(self, configuration):
+        self.log.debug(configuration)
+        pass
+
     @webhook('/cloud_init/<instance_id>',raw=True)
     def cloud_init(self, request, instance_id):
         self.log.info("Instace {} is calling home...".format(instance_id))
