@@ -1,7 +1,8 @@
 # -*- coding: utf8 -*-
 
-from errbot import BotPlugin, webhook, re_botcmd
+from errbot import BotPlugin, webhook
 from bottle import abort
+from itertools import chain
 
 CONFIG_TEMPLATE = {'notify': ''}
 
