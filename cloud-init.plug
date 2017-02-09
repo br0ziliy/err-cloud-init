@@ -1,0 +1,12 @@
+[Core]
+name = CloudInit
+module = cloud-init
+
+[Documentation]
+description = An Err plugin to receive Cloud-init "phone_home" module requests
+
+[Python]
+version = 2+
+
+[Errbot]
+min = 4.1.3
