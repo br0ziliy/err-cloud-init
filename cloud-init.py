@@ -47,7 +47,12 @@ class CloudInit(BotPlugin):
         if len(notify) > 0 and len(notify[0]) > 1:
             for dest in notify:
                 self.log.info("Letting know {} the host is built".format(dest))
-                to = self.build_identifier(dest)
+                try:
+                    to = self.build_identifier(dest)
+                except: # Too lazy to implement backend specific exception
+                        # handling.
+                    self.log.error("Could not build identifier from: {}".format(dest))
+                    continue
                 self.send(to, message)
             return None # HTTP 200
         else:
