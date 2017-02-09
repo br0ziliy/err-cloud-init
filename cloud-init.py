@@ -10,7 +10,7 @@ class CloudInit(BotPlugin):
     Err plugin to send messages to chats/users through webhooks
     """
 
-     def configure(self, configuration):
+    def configure(self, configuration):
         """
         Creates a Python dictionary object which contains all the values from our
         CONFIG_TEMPLATE and then updates that dictionary with the configuration
@@ -38,11 +38,14 @@ class CloudInit(BotPlugin):
         notify = self.config['notify']
         if len(notify) > 0:
             for dest in notify:
+                self.log.info("Letting know {} the host is built".format(dest))
                 self.build_identifier(dest)
                 self.send(dest, message)
                 return None # HTTP 200
         else:
+            self.log.info("Letting know admins the host is built.")
             self.warn_admins(message)
             return None # HTTP 200
+        self.log.error("This should not happen, report a bug.")
         abort('500', 'Internal Server Error')
 
