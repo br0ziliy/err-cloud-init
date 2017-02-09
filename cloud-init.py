@@ -18,4 +18,6 @@ class CloudInit(BotPlugin):
     @webhook('/cloud_init/<instance_id>',raw=True)
     def cloud_init(self, request, instance_id):
         self.log.info("Instace {} is calling home...".format(instance_id))
-        self.log.debug(repr(request))
+        for e in request.forms:
+            self.log.debug(repr(e))
+        self.log.debug(request.body)
