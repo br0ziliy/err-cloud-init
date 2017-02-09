@@ -49,7 +49,7 @@ class CloudInit(BotPlugin):
                 self.log.info("Letting know {} the host is built".format(dest))
                 to = self.build_identifier(dest)
                 self.send(to, message)
-                return None # HTTP 200
+            return None # HTTP 200
         else:
             self.log.info("Letting know admins the host is built.")
             self.warn_admins(message)
