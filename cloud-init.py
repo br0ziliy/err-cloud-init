@@ -43,7 +43,7 @@ class CloudInit(BotPlugin):
         notify = self.config['notify'].split(',') # even if 'notify' is empty,
                                                   # this gives array with one
                                                   # "empty" element
-        self.log.debug(repr(notify))
+        self.log.debug("Configured notify list: ".format(repr(notify)))
         if len(notify) > 0 and len(notify[0]) > 1:
             for dest in notify:
                 self.log.info("Letting know {} the host is built".format(dest))
@@ -55,5 +55,4 @@ class CloudInit(BotPlugin):
             self.warn_admins(message)
             return None # HTTP 200
         self.log.error("This should not happen, report a bug.")
-        abort('500', 'Internal Server Error')
 
