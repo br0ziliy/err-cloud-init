@@ -3,7 +3,7 @@
 from errbot import BotPlugin, webhook, re_botcmd
 from bottle import abort
 
-CONFIG_TEMPLATE = {'notify': []}
+CONFIG_TEMPLATE = {'notify': ''}
 
 class CloudInit(BotPlugin):
     """
@@ -39,8 +39,10 @@ class CloudInit(BotPlugin):
         self.log.info("Instace {} is calling home...".format(instance_id))
         host = request.forms.get('hostname', instance_id)
         message = "Yay, {} reports itself ready!".format(host)
-        notify = self.config['notify']
-        if len(notify) > 0:
+        notify = self.config['notify'].split(',') # even if 'notify' is empty,
+                                                  # this gives array with one
+                                                  # "empty" element
+        if len(notify) > 0 and len(notify[0]) > 1:
             for dest in notify:
                 self.log.info("Letting know {} the host is built".format(dest))
                 self.build_identifier(dest)
