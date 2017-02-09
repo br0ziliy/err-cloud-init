@@ -42,6 +42,7 @@ class CloudInit(BotPlugin):
         notify = self.config['notify'].split(',') # even if 'notify' is empty,
                                                   # this gives array with one
                                                   # "empty" element
+        self.log.debug(repr(notify))
         if len(notify) > 0 and len(notify[0]) > 1:
             for dest in notify:
                 self.log.info("Letting know {} the host is built".format(dest))
